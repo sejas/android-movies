@@ -15,8 +15,12 @@
  */
 package com.baulen.androidmovies.utilities;
 
+import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
+
+import com.baulen.androidmovies.ListActivity;
+import com.baulen.androidmovies.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +44,8 @@ public final class NetworkUtils {
     private static final HashMap<String, String> queryParams = createQueryParams();
     private static HashMap<String, String> createQueryParams()
     {
-        HashMap<String,String> myMap = new HashMap<String,String>();
-        queryParams.put("api_key", "<<APIKEY>>");
+        HashMap<String,String> queryParams = new HashMap<String,String>();
+        queryParams.put("api_key", ListActivity.getContext().getString(R.string.apikey));
         queryParams.put("language", "en-US");
         queryParams.put("page", "1");
         return queryParams;
@@ -55,16 +59,21 @@ public final class NetworkUtils {
      * @return The URL to use to query the weather server.
      */
     public static URL buildUrlGeneric(String urlString) {
+        Log.d("----->>>>> NetworkUtils", "buildUrlGeneric");
         Uri.Builder partialBuiltUri = Uri.parse(urlString).buildUpon();
+        Log.d("----->>>>> NetworkUtils", "buildUrlGeneric2");
         for (Map.Entry<String, String> entry : queryParams.entrySet()) {
             partialBuiltUri .appendQueryParameter(entry.getKey(), entry.getValue());
         }
         Uri builtUri = partialBuiltUri .build();
 
+        Log.d("----->>>>> NetworkUtils", builtUri.toString());
+
         URL url = null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
+            Log.d("----->>>>> NetworkUtils", "ERROR TRY buildUrlGeneric");
             e.printStackTrace();
         }
 
@@ -74,9 +83,11 @@ public final class NetworkUtils {
     }
 
     public static URL buildUrlPopular() {
+        Log.d("----->>>>> NetworkUtils", "buildUrlPopular");
      return buildUrlGeneric(URL_POPULAR);
     }
     public static URL buildUrlTopRated() {
+        Log.d("----->>>>> NetworkUtils", "buildUrlTopRated");
         return buildUrlGeneric(URL_TOPRATED);
     }
 
@@ -101,7 +112,11 @@ public final class NetworkUtils {
             } else {
                 return null;
             }
-        } finally {
+        }catch (Exception e){
+            Log.d("ERROR FETCHING URL",url.toString());
+            e.printStackTrace();
+            return null;
+        }finally {
             urlConnection.disconnect();
         }
     }
