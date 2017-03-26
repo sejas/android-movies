@@ -36,10 +36,9 @@ public class ListActivity extends AppCompatActivity {
 
         recyclerview_movies = (RecyclerView) findViewById(R.id.recyclerview_movies);
 
-        GridLayoutManager layoutManager
-                = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerview_movies.setLayoutManager(layoutManager);
-        mImageAdapter = new ImageAdapter (mContext,new ArrayList<Movie>());
+        mImageAdapter = new ImageAdapter (mContext,null);
         recyclerview_movies.setAdapter(mImageAdapter );
 
 
