@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.baulen.androidmovies.utilities.ImageAdapter;
 import com.baulen.androidmovies.utilities.Themoviedb;
 
+import java.util.ArrayList;
+
 import static android.R.attr.id;
 
 public class ListActivity extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class ListActivity extends AppCompatActivity {
         GridLayoutManager layoutManager
                 = new GridLayoutManager(this, 2);
         recyclerview_movies.setLayoutManager(layoutManager);
-        mImageAdapter = new ImageAdapter ();
+        mImageAdapter = new ImageAdapter (mContext,new ArrayList<Movie>());
         recyclerview_movies.setAdapter(mImageAdapter );
 
 

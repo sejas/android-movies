@@ -36,25 +36,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
 
     @Override
     public ItemViewHolderNew onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.v("hola","1");
-        Context context = parent.getContext();
-        Log.v("hola","2");
-        int layoutIdForListItem = R.layout.activity_list;
-        Log.v("hola","3");
-        LayoutInflater inflater = LayoutInflater.from(context);
-        Log.v("hola","4");
-        boolean shouldAttachToParentImmediately = false;
-        Log.v("hola","5");
-
-        View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
-        Log.v("hola","6");
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item, parent, false);
         return new ItemViewHolderNew(view);
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolderNew holder, int position) {
         //Set the right image
-        Picasso.with(mContext).load(mMovies.get(position).getPoster_url()).into(holder.mImageView);
+        Movie movie = mMovies.get(position);
+        Picasso.with(mContext).load(movie.getPoster_url()).fit().into(holder.mImageView);    //.resize(220, 300)
     }
 
     public long getItemId(int position) {
@@ -73,12 +63,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
 
     public void updateMovies(ArrayList<Movie> movies){
         mMovies = movies;
+        notifyDataSetChanged();
     }
 
 
     public class ItemViewHolderNew extends RecyclerView.ViewHolder implements View.OnClickListener {
         private String TAG = "com.baulen.androidmovies.ItemViewHolderNew";
-        public final ImageView mImageView;
+        public ImageView mImageView;
 
         public ItemViewHolderNew(View view) {
             super(view);
