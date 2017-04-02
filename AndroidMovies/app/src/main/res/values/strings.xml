@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">AndroidMovies</string>
-    <string name="apikey"></string>
+    <string name="apikey">APIKEY</string>
 </resources>
