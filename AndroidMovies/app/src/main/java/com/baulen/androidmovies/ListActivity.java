@@ -1,6 +1,7 @@
 package com.baulen.androidmovies;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import com.baulen.androidmovies.utilities.Themoviedb;
 import java.util.ArrayList;
 
 import static android.R.attr.id;
+import static android.R.attr.layout;
 
 public class ListActivity extends AppCompatActivity {
     private Themoviedb mthemoviedb = new Themoviedb();
@@ -36,8 +38,10 @@ public class ListActivity extends AppCompatActivity {
 
         recyclerview_movies = (RecyclerView) findViewById(R.id.recyclerview_movies);
 
+        //I tried to remove the space between columns
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerview_movies.setLayoutManager(layoutManager);
+
         mImageAdapter = new ImageAdapter (mContext,null);
         recyclerview_movies.setAdapter(mImageAdapter );
 

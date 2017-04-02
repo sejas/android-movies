@@ -44,13 +44,10 @@ public class Themoviedb {
                 return null;
             }
             String toprated = params[0];
-            Log.d("----->>>>> FetchThemoviedbTask", String.valueOf(params.length));
             URL moviesURL = NetworkUtils.buildUrlPopular();
-            Log.d("----->>>>> FetchThemoviedbTask", moviesURL.toString());
             if ("toprated".equals(toprated)){
                 moviesURL = NetworkUtils.buildUrlTopRated();
             }
-            Log.d("----->>>>> FetchThemoviedbTask", moviesURL.toString());
             try {
                 String jsonResponse = NetworkUtils
                         .getResponseFromHttpUrl(moviesURL);

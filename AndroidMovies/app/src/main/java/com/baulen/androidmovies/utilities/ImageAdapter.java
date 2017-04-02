@@ -45,8 +45,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
     public void onBindViewHolder(ItemViewHolderNew holder, int position) {
         //Set the right image
         Movie movie = mMovies.get(position);
-        Picasso.with(mContext).load(movie.getPoster_url()).fit().into(holder.mImageView);
-        holder.titleTV.setText(movie.getPoster_url());
+        //Picasso.with(mContext).load(movie.getPoster_url()).fit().into(holder.mImageView);
+        Picasso.with(mContext).load(movie.getPoster_url()).into(holder.mImageView);
         Log.v("ImageAdapter", "Getting image: "+movie.getPoster_url());
     }
 
@@ -73,18 +73,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
     public class ItemViewHolderNew extends RecyclerView.ViewHolder implements View.OnClickListener {
         private String TAG = "com.baulen.androidmovies.ItemViewHolderNew";
         public ImageView mImageView;
-        private TextView titleTV;
 
         public ItemViewHolderNew(View view) {
             super(view);
             mImageView = (ImageView) view.findViewById(R.id.iv_poster);
-            titleTV = (TextView) view.findViewById(R.id.title);
-            //view.setOnClickListener(this);
+            view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Log.v(TAG,"");
+            Log.v(TAG,"onClick");
             //int adapterPosition = getAdapterPosition();
             //String weatherForDay = mWeatherData[adapterPosition];
             //mClickHandler.onClick(weatherForDay);
