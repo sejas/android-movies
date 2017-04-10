@@ -61,7 +61,8 @@ public class Themoviedb {
 
                 e.printStackTrace();
                 // TODO: REMOVE THIS LINE
-                return  MoviesJsonUtils.getImagesFromJson(contextParent, ""); //DEBUG
+                //return  MoviesJsonUtils.getImagesFromJson(contextParent, ""); //DEBUG
+                return null;
 
                 //return null;
             }

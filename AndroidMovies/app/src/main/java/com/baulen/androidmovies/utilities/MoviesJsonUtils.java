@@ -5,6 +5,10 @@ import android.util.Log;
 
 import com.baulen.androidmovies.Movie;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -13,10 +17,22 @@ import java.util.ArrayList;
 
 public class MoviesJsonUtils {
     private static final String TAG = MoviesJsonUtils.class.getSimpleName();
-    public static ArrayList<Movie> getImagesFromJson(Context context, String jsonResponse) {
+
+    public static ArrayList<Movie> getImagesFromJson(Context context, String jsonResponse)  throws JSONException {
+        final String RESULTS = "results";
+        final String POSTER= "poster_path";
         if (jsonResponse != null) {
             Log.d(TAG, jsonResponse);
             ArrayList<Movie> movies = new ArrayList<Movie>();
+            JSONObject moviesJson = new JSONObject(jsonResponse);
+            if (moviesJson.has(RESULTS)){
+                JSONArray moviesArrayJson = moviesJson.getJSONArray(RESULTS);
+                for (int i = 0; i < moviesJson.length(); i++) {
+                    JSONObject movieJson =  moviesArrayJson.getJSONObject(i);
+                    movies.add(new Movie("http://image.tmdb.org/t/p/w185/"+movieJson.getString(POSTER)));
+                }
+            }
+
 
             return movies;
         } else {

@@ -6,17 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.baulen.androidmovies.ItemViewHolder;
 import com.baulen.androidmovies.Movie;
 import com.baulen.androidmovies.R;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -25,12 +20,23 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHolderNew> {
     private Context mContext;
+    private final ImageAdapterOnClickHandler mClickHandler;
     private ArrayList<Movie> mMovies;
-    public ImageAdapter() {
+
+    public ImageAdapter(ImageAdapterOnClickHandler mClickHandler) {
+        this.mClickHandler = mClickHandler;
+    }
+
+    /**
+     * The interface that receives onClick messages.
+     */
+    public interface ImageAdapterOnClickHandler {
+        void onClick(Movie movie);
     }
 
 
-    public ImageAdapter(Context context, ArrayList<Movie> movies) {
+    public ImageAdapter(Context context, ArrayList<Movie> movies, ImageAdapterOnClickHandler mClickHandler) {
+        this.mClickHandler = mClickHandler;
         this.mMovies = mMovies;
         this.mContext = context;
     }
@@ -83,9 +89,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
         @Override
         public void onClick(View v) {
             Log.v(TAG,"onClick");
-            //int adapterPosition = getAdapterPosition();
-            //String weatherForDay = mWeatherData[adapterPosition];
-            //mClickHandler.onClick(weatherForDay);
+            int adapterPosition = getAdapterPosition();
+            Movie movie = mMovies.get(adapterPosition);
+            mClickHandler.onClick(movie);
         }
     }
 

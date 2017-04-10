@@ -1,28 +1,17 @@
 package com.baulen.androidmovies;
 
 import android.content.Context;
-import android.graphics.Rect;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.baulen.androidmovies.utilities.ImageAdapter;
 import com.baulen.androidmovies.utilities.Themoviedb;
 
-import java.util.ArrayList;
-
-import static android.R.attr.id;
-import static android.R.attr.layout;
-
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements ImageAdapter.ImageAdapterOnClickHandler {
     private Themoviedb mthemoviedb = new Themoviedb();
     private ProgressBar pb_loading;
     private RecyclerView recyclerview_movies;
@@ -42,7 +31,7 @@ public class ListActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerview_movies.setLayoutManager(layoutManager);
 
-        mImageAdapter = new ImageAdapter (mContext,null);
+        mImageAdapter = new ImageAdapter (mContext,null, this);
         recyclerview_movies.setAdapter(mImageAdapter );
 
 
@@ -58,7 +47,14 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void loadMoviesrData() {
-        //new Themoviedb.FetchThemoviedbTask.execute("something");
         mthemoviedb.themoviedbTask.execute("something");
+    }
+
+    @Override
+    public void onClick(Movie movie) {
+        Context context = this;
+        Class destinationClass = DetailActivity.class;
+        Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+        startActivity(intentToStartDetailActivity);
     }
 }
