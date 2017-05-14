@@ -60,7 +60,7 @@ public class ListActivity extends AppCompatActivity implements ImageAdapter.Imag
             if(this.toprated){
                 mthemoviedb.getMoviesTopRated();
             }else{
-                mthemoviedb.getMoviesLatest();
+                mthemoviedb.getMoviesPopular();
             }
             return true;
         }
@@ -74,7 +74,7 @@ public class ListActivity extends AppCompatActivity implements ImageAdapter.Imag
     }
 
     private void loadMoviesrData() {
-        mthemoviedb.getMoviesLatest();
+        mthemoviedb.getMoviesPopular();
     }
 
     @Override

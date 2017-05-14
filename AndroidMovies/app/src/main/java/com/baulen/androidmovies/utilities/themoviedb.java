@@ -32,7 +32,7 @@ public class Themoviedb {
         FetchThemoviedbTask themoviedbTask =  new FetchThemoviedbTask();
         themoviedbTask.execute("toprated");
     }
-    public void getMoviesLatest(){
+    public void getMoviesPopular(){
         FetchThemoviedbTask themoviedbTask =  new FetchThemoviedbTask();
         themoviedbTask.execute("");
     }
