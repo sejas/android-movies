@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ceroPadding">0dp</dimen>
+    <dimen name="progressSpace">42dp</dimen>
+    <dimen name="marginSuperSmall">5dp</dimen>
+    <dimen name="marginSmall">10dp</dimen>
+    <dimen name="marginNormal">20dp</dimen>
+    <dimen name="textBigSize">24sp</dimen>
+</resources>

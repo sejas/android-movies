@@ -19,6 +19,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
 
+import com.baulen.androidmovies.BuildConfig;
 import com.baulen.androidmovies.ListActivity;
 import com.baulen.androidmovies.R;
 
@@ -45,7 +46,7 @@ public final class NetworkUtils {
     private static HashMap<String, String> createQueryParams()
     {
         HashMap<String,String> queryParams = new HashMap<String,String>();
-        queryParams.put("api_key", ListActivity.getContext().getString(R.string.apikey));
+        queryParams.put("api_key", BuildConfig.THE_MOVIE_DB_API_TOKEN);
         queryParams.put("language", "en-US");
         queryParams.put("page", "1");
         return queryParams;

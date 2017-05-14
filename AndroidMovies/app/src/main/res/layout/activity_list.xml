@@ -8,11 +8,11 @@
         android:id="@+id/recyclerview_movies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0dp" />
+        android:padding="@dimen/ceroPadding" />
     <ProgressBar
         android:id="@+id/pb_loading"
-        android:layout_height="42dp"
-        android:layout_width="42dp"
+        android:layout_height="@dimen/progressSpace"
+        android:layout_width="@dimen/progressSpace"
         android:layout_gravity="center"
         android:visibility="invisible" />
 </FrameLayout>
