@@ -33,7 +33,24 @@ public class Movie implements Serializable{
         synopsis = movieJson.getString(SYNOPSIS);
     }
 
+    //Getters
     public String getPoster_url() {
         return poster_url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getRelease() {
+        return release;
+    }
+
+    public String getVote() {
+        return vote;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
     }
 }
