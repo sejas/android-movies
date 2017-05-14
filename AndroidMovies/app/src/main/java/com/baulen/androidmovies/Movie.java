@@ -1,10 +1,12 @@
 package com.baulen.androidmovies;
 
+import java.io.Serializable;
+
 /**
  * Created by macbookpro on 26/3/17.
  */
 
-public class Movie {
+public class Movie implements Serializable{
     private String poster_url;
     private String title;
     private String release;

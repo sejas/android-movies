@@ -55,6 +55,8 @@ public class ListActivity extends AppCompatActivity implements ImageAdapter.Imag
         Context context = this;
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
+        intentToStartDetailActivity.putExtra(DetailActivity.targetIntent, movie);
         startActivity(intentToStartDetailActivity);
+
     }
 }
