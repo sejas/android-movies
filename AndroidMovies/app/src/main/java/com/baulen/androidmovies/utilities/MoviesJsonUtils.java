@@ -26,7 +26,7 @@ public class MoviesJsonUtils {
             JSONObject moviesJson = new JSONObject(jsonResponse);
             if (moviesJson.has(RESULTS)){
                 JSONArray moviesArrayJson = moviesJson.getJSONArray(RESULTS);
-                for (int i = 0; i < moviesJson.length(); i++) {
+                for (int i = 0; i < moviesArrayJson.length(); i++) {
                     JSONObject movieJson =  moviesArrayJson.getJSONObject(i);
                     movies.add(new Movie(movieJson));
                 }

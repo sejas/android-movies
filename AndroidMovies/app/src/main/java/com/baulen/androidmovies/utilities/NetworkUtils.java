@@ -59,15 +59,11 @@ public final class NetworkUtils {
      * @return The URL to use to query the weather server.
      */
     public static URL buildUrlGeneric(String urlString) {
-        Log.d("----->>>>> NetworkUtils", "buildUrlGeneric");
         Uri.Builder partialBuiltUri = Uri.parse(urlString).buildUpon();
-        Log.d("----->>>>> NetworkUtils", "buildUrlGeneric2");
         for (Map.Entry<String, String> entry : queryParams.entrySet()) {
             partialBuiltUri .appendQueryParameter(entry.getKey(), entry.getValue());
         }
         Uri builtUri = partialBuiltUri .build();
-
-        Log.d("----->>>>> NetworkUtils", builtUri.toString());
 
         URL url = null;
         try {
@@ -83,11 +79,9 @@ public final class NetworkUtils {
     }
 
     public static URL buildUrlPopular() {
-        Log.d("----->>>>> NetworkUtils", "buildUrlPopular");
      return buildUrlGeneric(URL_POPULAR);
     }
     public static URL buildUrlTopRated() {
-        Log.d("----->>>>> NetworkUtils", "buildUrlTopRated");
         return buildUrlGeneric(URL_TOPRATED);
     }
 
