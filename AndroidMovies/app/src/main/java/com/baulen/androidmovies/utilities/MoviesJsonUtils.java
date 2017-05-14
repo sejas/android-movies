@@ -20,7 +20,6 @@ public class MoviesJsonUtils {
 
     public static ArrayList<Movie> getImagesFromJson(Context context, String jsonResponse)  throws JSONException {
         final String RESULTS = "results";
-        final String POSTER= "poster_path";
         if (jsonResponse != null) {
             Log.d(TAG, jsonResponse);
             ArrayList<Movie> movies = new ArrayList<Movie>();
@@ -29,7 +28,7 @@ public class MoviesJsonUtils {
                 JSONArray moviesArrayJson = moviesJson.getJSONArray(RESULTS);
                 for (int i = 0; i < moviesJson.length(); i++) {
                     JSONObject movieJson =  moviesArrayJson.getJSONObject(i);
-                    movies.add(new Movie("http://image.tmdb.org/t/p/w185/"+movieJson.getString(POSTER)));
+                    movies.add(new Movie(movieJson));
                 }
             }
 
@@ -38,8 +37,6 @@ public class MoviesJsonUtils {
         } else {
             Log.d(TAG, "NUUULLLL STRING");
             ArrayList<Movie> movies = new ArrayList<Movie>();
-            movies.add(new Movie("http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"));
-
             return movies;
         }
     }
