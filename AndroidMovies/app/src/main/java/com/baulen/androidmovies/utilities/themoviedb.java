@@ -28,7 +28,14 @@ public class Themoviedb {
         this.mImageAdapter = mImageAdapter;
     }
 
-    public FetchThemoviedbTask themoviedbTask =  new FetchThemoviedbTask();
+    public void getMoviesTopRated(){
+        FetchThemoviedbTask themoviedbTask =  new FetchThemoviedbTask();
+        themoviedbTask.execute("toprated");
+    }
+    public void getMoviesLatest(){
+        FetchThemoviedbTask themoviedbTask =  new FetchThemoviedbTask();
+        themoviedbTask.execute("");
+    }
 
     public class FetchThemoviedbTask extends AsyncTask<String, Void, ArrayList<Movie>> {
 
@@ -58,13 +65,8 @@ public class Themoviedb {
                 return simpleJsonMoviesData;
 
             } catch (Exception e) {
-
                 e.printStackTrace();
-                // TODO: REMOVE THIS LINE
-                //return  MoviesJsonUtils.getImagesFromJson(contextParent, ""); //DEBUG
                 return null;
-
-                //return null;
             }
         }
 

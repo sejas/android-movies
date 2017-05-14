@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.baulen.androidmovies.utilities.ImageAdapter;
 import com.baulen.androidmovies.utilities.Themoviedb;
@@ -16,6 +19,7 @@ public class ListActivity extends AppCompatActivity implements ImageAdapter.Imag
     private ProgressBar pb_loading;
     private RecyclerView recyclerview_movies;
     private ImageAdapter mImageAdapter;
+    private Boolean toprated = false;
 
     private static Context mContext;
 
@@ -41,13 +45,36 @@ public class ListActivity extends AppCompatActivity implements ImageAdapter.Imag
         loadMoviesrData();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_search){
+            Context context = ListActivity.this;
+            Toast.makeText(context, R.string.toastToggle, Toast.LENGTH_SHORT).show();
+            this.toprated = ! this.toprated;
+            if(this.toprated){
+                mthemoviedb.getMoviesTopRated();
+            }else{
+                mthemoviedb.getMoviesLatest();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     public static Context getContext(){
         return mContext;
     }
 
     private void loadMoviesrData() {
-        mthemoviedb.themoviedbTask.execute("something");
+        mthemoviedb.getMoviesLatest();
     }
 
     @Override

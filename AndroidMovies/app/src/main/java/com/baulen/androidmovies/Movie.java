@@ -22,11 +22,12 @@ public class Movie implements Serializable{
     final String RELEASE= "release_date";
     final String VOTE= "vote_average";
     final String SYNOPSIS= "overview";
-
+    //Constant for image width
+    final String WIDTH = "320";
 
 
     public Movie(JSONObject movieJson) throws JSONException {
-        poster_url = "http://image.tmdb.org/t/p/w185/"+movieJson.getString(POSTER);
+        poster_url = "http://image.tmdb.org/t/p/w"+this.WIDTH+"/"+movieJson.getString(POSTER);
         title = movieJson.getString(TITLE);
         release = movieJson.getString(RELEASE);
         vote = movieJson.getString(VOTE);
